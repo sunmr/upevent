@@ -1,0 +1,47 @@
+<!--pages/add/add.wxml-->
+
+<loading hidden="{{loadingHide}}">
+  {{loadingText}}
+</loading>
+
+<view class="addMain">
+
+  <view class="mbTxing">
+    <text>【提醒】请填写真实有效信息</text>
+  </view>
+  <form bindsubmit="formSubmit" report-submit='true'>
+    <input type="text" name="longitude" value="{{longitude}}" hidden="true"></input>
+    <input type="text" name="latitude" value="{{latitude}}" hidden="true"></input>
+    <input type="text" name="address" value="{{address}}" hidden="true"></input>
+    <input type="text" name="vid" value="{{vid}}" hidden="true"></input>
+    <view class='title'>
+      <label>您的姓名</label><input maxlength="4" name="xingming" value='{{realname}}'></input>
+    </view>
+
+    <view class='title'>
+      <label>手机号码</label><input maxlength="11" name='tels' placeholder='{{phone}}' disabled='true' value='{{phone}}'></input>
+    </view>
+    <view class='title'>
+      <label>公司名称</label><input maxlength="30" name='conpany' value='{{conpany}}'></input>
+    </view>
+    <view class='title'>
+      <label>公司职位</label><input maxlength="16" name='content' value='{{job}}'></input>
+    </view>
+    <!-- <view class="mbInput">
+      <view class="miaoshu">
+        <textarea placeholder="公司职位" auto-height class="section" maxlength="150" name="content" value='{{content}}' />
+      </view>
+    </view> -->
+
+    <!-- 获取发布位置 -->
+    <view class='getGps' bindtap="clearGps">
+        <image src="../../image/map.png" class="mapIco" mode="widthFix"></image>
+        <label>当前位置</label><text>{{address}}</text>
+    </view>
+
+    <view class="mbBtn">
+      <button class="vBtn_ok" formType="submit" loading="{{loading}}" disabled="{{disabled}}">提交报名</button>
+    </view>
+  </form>
+
+</view>

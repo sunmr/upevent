@@ -1,0 +1,25 @@
+<block url="" wx:for="{{vipinfoList}}" wx:key="">
+    <view class="item">
+      <navigator url="../vipview/vipview?id={{item.id}}" class="navigator-item">
+        <!-- <view class="UserName">
+          <view class="UserPic">
+            <image src="{{item.headimgurl}}"></image>
+            <text>{{item.username}}</text>
+          </view>
+          <view class="UserDate-a"></view>
+        </view> -->
+        <text class="textCms">{{item.title}}</text>
+        <view class="viPhoto" wx:if="{{item.cover != null}}">
+            <view class="wiPhoto">
+              <block>
+              <image class="poster" src="{{picUrl}}{{item.cover}}" mode="aspectFill"></image>
+              </block>
+            </view>
+          </view>
+      <view class="datetime">
+          <label class="pl"><image src="../../image/pl.png" class="plimg"></image>{{item.plnum}}</label>
+          <label class="tm"><image src="../../image/time.png" class="tmimg"></image>{{item.datetime}}</label>
+      </view>  
+      </navigator>
+    </view>
+  </block>

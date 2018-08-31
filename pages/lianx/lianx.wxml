@@ -1,0 +1,25 @@
+<!--pages/about/about.wxml-->
+<loading hidden="{{loadingHide}}">
+  {{loadingText}}
+</loading>
+<view class="IndexList">
+  <view bindtap="callmeTap">
+    <image src="../../image/tel.png" class="telIco" mode="widthFix"></image>
+    <text class="tel">电话 / 0571-58120555</text>
+  </view>
+  <view>
+    <image src="../../image/weixin.png" class="weixinIco" mode="widthFix"></image>
+    <text class="map">微信 / 15336518535</text>
+  </view>
+  <view>
+    <image src="../../image/email.png" class="eIco" mode="widthFix"></image>
+    <text class="email">邮件 / uplism@uplism.com</text>
+  </view>
+  <view>
+    <image src="../../image/map.png" class="mapIco" mode="widthFix"></image>
+    <text class="map">杭州新加坡科技园3幢102</text>
+  </view>
+</view>
+<view class="footer">
+  {{autor}}
+</view>

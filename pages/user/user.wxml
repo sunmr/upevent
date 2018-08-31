@@ -1,0 +1,28 @@
+<!--pages/user/user.wxml-->
+<view class="container">
+  <view  class="userinfo">
+    <button wx:if="{{!hasUserInfo}}" open-type='getUserInfo' bindgetuserinfo="getUserInfo">微信登录</button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> 
+  </view>
+  <view class="usermotto">
+    
+     <navigator class="list_a" url="../ulist/ulist?openid={{openid}}">
+        活动管理
+    </navigator> 
+    <navigator class="list_b" url="../lianx/lianx">
+        联系我们
+    </navigator>
+    <navigator class="list_b" url="../about/about">
+        关于我们
+    </navigator>
+    <!-- <view class='list_b' bindtap='quitOut'>
+        退出登录
+    </view> -->
+  </view>
+  <view class="footer">
+    {{autor}}
+  </view>
+</view>

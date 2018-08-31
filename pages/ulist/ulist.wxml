@@ -1,0 +1,12 @@
+<!--pages/ulist/ulist.wxml-->
+<view class="container">
+<view class='hd-nav'>
+    <view class='nav-item {{nav_select_a}}' bindtap='swichNavA'>已报名</view>
+    <view class='nav-item {{nav_select_b}}' bindtap='swichNavB'>已发布</view>
+</view>
+<!--index.wxml-->  
+<include src="list-a.wxml" />
+
+
+
+</view>

@@ -1,0 +1,20 @@
+<view class='listcate'>
+    <view><text>精选</text></view>
+    <view><text>互联网</text></view>
+</view>
+<block wx:for="{{infoList}}" wx:key="">
+    <!-- <navigator url="../view/view?id={{item.id}}" class="navigator-item"> -->
+      <view class='item'>   
+            <view class="viPhoto" wx:if="{{item.photo != null}}">
+              <block>
+                <image class="poster" src="{{picUrl}}{{item.photo}}" mode="aspectFill"></image>
+              </block>
+            </view>
+            <view class='list-content'>
+              <view class="list-title"><text>{{item.title}}</text></view>
+              <view class="list-describe">{{item.describe}}</view>
+              <view class="list-info"><text>{{item.address}}</text></view>
+            </view>      
+      </view>
+    <!-- </navigator> -->
+</block>

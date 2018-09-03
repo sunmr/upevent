@@ -144,7 +144,16 @@ Page({
     }
   },
   share:function(){
-     console.log('share');
+    let promise1 = new Promise(function(resolve,reject){
+      resolve('111');
+    })
+    let promise2 = new Promise(function(resolve,reject){
+      resolve('222');
+    })
+    Promise.all([promise1,promise2]).then(function(values){
+        console.log(values);
+    })
+    console.log('share');
   }
 
 })

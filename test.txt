@@ -1,1 +1,1 @@
-test rm
+test sunmr-mac

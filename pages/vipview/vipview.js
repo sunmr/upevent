@@ -153,7 +153,7 @@ Page({
     Promise.all([promise1,promise2]).then(function(values){
         console.log(values);
     })
-    console.log('share');
+    console.log('share111');
   }
 
 })

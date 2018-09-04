@@ -17,7 +17,8 @@ Page({
     tel: '0123456789',
     gzList: [],
     //官方活动报名
-    cate:'2' 
+    cate:'2',
+    hidden:true
   },
 
   onShow: function () {
@@ -25,6 +26,7 @@ Page({
 
 
   onLoad: function (params) {
+    this.canvansInit();
     var that = this;
     wx.showNavigationBarLoading(); 
     wx.request({
@@ -143,8 +145,64 @@ Page({
       imageUrl: that.data.picUrl + that.data.views.cover
     }
   },
-  share:function(){
-     console.log('share');
-  }
+  canvansInit:function(){
+    let promise1 = new Promise(function(resolve,reject){
+       wx.getImageInfo({
+         src: '../../image/qrcode.jpg',
+         success:function(res){
+           resolve(res);
+         }
+       })
+    })
+    let promise2 = new Promise(function(resolve,reject){
+      wx.getImageInfo({
+        src: '../../image/qrbg.png',
+        success:function(res){
+          resolve(res);
+        }
+      })
+    })
+    Promise.all([promise1,promise2]).then(res => {
+        console.log('canvas'+res);
+        const ctx = wx.createCanvasContext('shareImg')
+        ctx.drawImage('../../'+res[0].path,158,190,210,210);
+        ctx.drawImage('../../'+res[1].path,0,0,545,771);
 
+        ctx.setTextAlign('center');
+        ctx.setFillStyle('#ffffff');
+        ctx.setFontSize(22);
+        ctx.fillText('活动',545/2,130);
+        ctx.fillText('活动2', 545 / 2, 160);
+
+        ctx.stroke();
+        ctx.draw();
+        
+    })
+  },
+  share:function(){
+    let that = this;
+    wx.showLoading({
+      title: '努力生成中...',
+    })
+    wx.canvasToTempFilePath({
+      x:0,
+      y:0,
+      width: 545,
+      height: 771,
+      destWidth: 545,
+      destHeight: 771,
+      canvasId: 'shareImg',
+      success:function(res){
+        console.log(res.tempFilePath);
+        that.setData({
+          prurl:res.tempFilePath,
+          hidden:false
+        })
+        wx.hideLoading()
+      },
+      fail:function(res){
+        console.log(res);
+      }
+    })
+  }
 })

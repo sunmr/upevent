@@ -204,5 +204,28 @@ Page({
         console.log(res);
       }
     })
+  },
+  save:function(){
+    let that = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.prurl,
+      success(res){
+        wx.showModal({
+          title: '保存分享图',
+          content: '图片已保存到相册，赶紧分享给朋友吧',
+          showCancel:false,
+          confirmText:'确认',
+          confirmColor:'#72B9C3',
+          success:function(res){
+            if(res.confirm){
+              console.log('用户点击确定');
+              that.setData({
+                hidden:true
+              })
+            }
+          }
+        })
+      }
+    })
   }
 })

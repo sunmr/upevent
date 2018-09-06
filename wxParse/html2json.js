@@ -147,7 +147,7 @@ function html2json(html, bindName) {
             //对img添加额外数据
             if (node.tag === 'img') {
                 node.imgIndex = results.images.length;
-                var imgUrl = node.attr.src;
+                var imgUrl = "https://www.upcoll.com" + node.attr.src;
                 if (imgUrl[0] == '') {
                     imgUrl.splice(0, 1);
                 }

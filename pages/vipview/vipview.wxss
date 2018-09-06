@@ -104,7 +104,13 @@ image.mapIco{
    position: fixed;
    bottom: 50rpx;
    right: 50rpx;
-   color: #666;
+   width: 120rpx;
+   height: 120rpx;
+   font-size: 30rpx;
+   line-height: 120rpx;
+   color: #ffffff;
+   border-radius: 50%;
+   background-color: #1E95C8;
 }
 
 /* canvas                                */
@@ -130,16 +136,20 @@ top:0rpx;
 z-index: 2;
 }
 .preview image{
-width: 70%;
+width: 88%;
 position: absolute;
-top: 10%;
-left: 15%;
+top: 4%;
+left: 6%;
 z-index: 3;
 border: 1px dashed #fff;
 }
 .preview button{
 width: 40%;
+height: 80rpx;
 position: absolute;
-bottom: 150rpx;
+display: block;
+font-size: 30rpx;
+line-height: 80rpx;
+bottom: 100rpx;
 left: 30%;
 }

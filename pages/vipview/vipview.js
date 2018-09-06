@@ -26,7 +26,6 @@ Page({
 
 
   onLoad: function (params) {
-    this.canvansInit();
     var that = this;
     wx.showNavigationBarLoading(); 
     wx.request({
@@ -42,6 +41,8 @@ Page({
           view_id: params.id,
           gzList: res.data.gzlist
         })
+        // 初始化canvas
+        that.canvansInit();
         wx.showLoading({
           title: '加载中'
         })
@@ -146,6 +147,9 @@ Page({
     }
   },
   canvansInit:function(){
+    let that = this;
+    let title = that.data.views.title;
+    console.log('ti', title);
     let promise1 = new Promise(function(resolve,reject){
        wx.getImageInfo({
          src: '../../image/qrcode.jpg',
@@ -171,8 +175,8 @@ Page({
         ctx.setTextAlign('center');
         ctx.setFillStyle('#ffffff');
         ctx.setFontSize(22);
-        ctx.fillText('活动',545/2,130);
-        ctx.fillText('活动2', 545 / 2, 160);
+        ctx.fillText(title,545/2,130);
+        ctx.fillText('@你，加入向上活动', 545 / 2, 160);
 
         ctx.stroke();
         ctx.draw();

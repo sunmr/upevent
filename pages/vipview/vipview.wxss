@@ -150,6 +150,6 @@ position: absolute;
 display: block;
 font-size: 30rpx;
 line-height: 80rpx;
-bottom: 100rpx;
+bottom: 80rpx;
 left: 30%;
 }

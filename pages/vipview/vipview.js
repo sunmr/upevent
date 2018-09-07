@@ -18,7 +18,8 @@ Page({
     gzList: [],
     //官方活动报名
     cate:'2',
-    hidden:true
+    hidden:true,
+    username:'向上创业'
   },
 
   onShow: function () {
@@ -27,6 +28,12 @@ Page({
 
   onLoad: function (params) {
     var that = this;
+    if(wxLogin.getUser()){
+      let user = wxLogin.getUser();
+      that.setData({
+        username:user.nickName
+      })
+    }
     wx.showNavigationBarLoading(); 
     wx.request({
       url: config.vipUrl + '/view/id/' + params.id,
@@ -136,7 +143,7 @@ Page({
       address: address
     })
   },
-
+  //分享
   onShareAppMessage: function (res) {
     var that = this;
     console.log('url:' + that.data.view_id);
@@ -146,9 +153,11 @@ Page({
       imageUrl: that.data.picUrl + that.data.views.cover
     }
   },
+  //分享图片 到朋友圈
   canvansInit:function(){
     let that = this;
     let title = that.data.views.title;
+    let username = that.data.username+"@你，加入向上活动";
     console.log('ti', title);
     let promise1 = new Promise(function(resolve,reject){
        wx.getImageInfo({
@@ -160,7 +169,7 @@ Page({
     })
     let promise2 = new Promise(function(resolve,reject){
       wx.getImageInfo({
-        src: '../../image/qrbg.png',
+        src: '../../image/bg.png',
         success:function(res){
           resolve(res);
         }
@@ -169,14 +178,14 @@ Page({
     Promise.all([promise1,promise2]).then(res => {
         console.log('canvas'+res);
         const ctx = wx.createCanvasContext('shareImg')
-        ctx.drawImage('../../'+res[0].path,158,190,210,210);
-        ctx.drawImage('../../'+res[1].path,0,0,545,771);
-
+        
+        ctx.drawImage('../../'+res[1].path,0,0,545,770);
+        ctx.drawImage('../../' + res[0].path, 190, 500, 180, 180);
         ctx.setTextAlign('center');
         ctx.setFillStyle('#ffffff');
-        ctx.setFontSize(22);
-        ctx.fillText(title,545/2,130);
-        ctx.fillText('@你，加入向上活动', 545 / 2, 160);
+        ctx.setFontSize(24);
+        ctx.fillText(title,545/2,771/2);
+        ctx.fillText(username, 545 / 2, 800/2+30);
 
         ctx.stroke();
         ctx.draw();
